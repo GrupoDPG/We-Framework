@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 
 /*
  *---------------------------------------------------------------
@@ -72,8 +74,6 @@
  *  Após o diretório do motor ter sido definido, criaremos as constantes
  * ---------------------------------------------------------------------
  */
-	// O Nome deste documento
-	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
 	//Caminho do diretório do FrameWork
 	define('BASEPATH', str_replace("\\", "/", dirname(rtrim(__FILE__, '/'))).'/');
@@ -114,7 +114,7 @@
 
 		if (!is_dir(BASEPATH.$application_folder)):
 
-			exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
+			exit(utf8_decode("O caminho da pasta aplicação não está definido corretamente. Arquivo: ").pathinfo(__FILE__, PATHINFO_BASENAME));
 
 		endif;
 
@@ -152,7 +152,7 @@
 
 		if (!is_dir(BASEPATH.$layout_folder)):
 
-			exit("A pasta da aplicação não foi encontrada. Acesse o seguinte arquivo para configurar o diretório da aplicação: ".SELF);
+			exit(utf8_decode("A pasta do layout não foi encontrada. Acesse o seguinte arquivo para configurar o diretório corretamente: ").pathinfo(__FILE__, PATHINFO_BASENAME));
 
 		endif;
 
